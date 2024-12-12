@@ -430,7 +430,11 @@ ${0}:precmd() {
   compstate[pattern_insert]=
   _lastcomp[pattern_insert]=
   if [[ -v _autocomplete__partial_list ]]; then
-    builtin compadd -J -last- -x '%F{0}%K{12}(MORE)%f%k'
+    local moreStyle
+    if ! zstyle -s ':autocomplete:*' more-style moreStyle; then
+      moreStyle='%F{0}%K{12}(MORE)%f%k' # 默认值
+    fi
+    builtin compadd -J -last- -x $moreStyle
     _lastcomp[list_lines]=$compstate[list_lines]
   fi
 
