@@ -133,7 +133,7 @@ _autocomplete__history_lines() {
   if (( $#words[@] == 1 )); then
     if [[ $WIDGETSTYLE == *-select* ]]; then
       # Enable mult-select.
-      suf=( -S ';' -R _autocomplete__history_lines_suffix )
+      suf=( -R _autocomplete__history_lines_suffix )
     else
       suf=( -qS ' ' )
     fi
